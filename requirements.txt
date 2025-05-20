@@ -2,3 +2,5 @@ flask
 pandas
 numpy
 werkzeug
+joblib
+scikit-learn
