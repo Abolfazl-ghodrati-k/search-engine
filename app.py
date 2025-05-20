@@ -22,6 +22,13 @@ def get_all_products():
     products = df[["product_id", "name", "category", "price", "rating"]]
     return jsonify(products.to_dict(orient="records"))
 
+@app.route("/product/<int:product_id>", methods=["GET"])
+def get_product_by_id(product_id):
+    product = df[df["product_id"] == product_id]
+    if product.empty:
+        return jsonify({"error": "Product not found"}), 404
+    return jsonify(product.iloc[0].to_dict())
+
 
 @app.route("/categories", methods=["GET"])
 def get_categories():
